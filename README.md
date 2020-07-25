@@ -2,6 +2,8 @@
 
 Run your seeds like you run your migrations.
 
+[![Packagist License](https://img.shields.io/packagist/l/khalyomede/laravel-seed)](https://github.com/khalyomede/laravel-seed/blob/master/LICENSE) [![Packagist Version](https://img.shields.io/packagist/v/khalyomede/laravel-seed)](https://packagist.org/packages/khalyomede/laravel-seed) [![Maintainability](https://api.codeclimate.com/v1/badges/82d400bf9bdd07053f7b/maintainability)](https://codeclimate.com/github/khalyomede/laravel-seed/maintainability)
+
 ![laravel-seed-showcase-2](https://user-images.githubusercontent.com/15908747/88453817-cda1a700-ce6a-11ea-86b5-923d6aeb98ee.gif)
 
 ## Summary
