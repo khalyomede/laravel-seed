@@ -1,0 +1,14 @@
+<?php
+
+class {{ class }}
+{
+    public function up()
+    {
+        //
+    }
+
+    public function down()
+    {
+        //
+    }
+}

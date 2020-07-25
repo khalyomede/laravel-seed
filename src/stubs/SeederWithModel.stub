@@ -1,0 +1,22 @@
+<?php
+
+use {{ modelNamespace }};
+
+class {{ class }}
+{
+    public function up()
+    {
+        {{ modelName }}::insert([
+            [
+                "id" => 1,
+            ],
+        ]);
+    }
+
+    public function down()
+    {
+        {{ modelName }}::destroy([
+            1,
+        ]);
+    }
+}

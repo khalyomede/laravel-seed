@@ -1,0 +1,29 @@
+{
+    "name": "khalyomede/laravel-seed",
+    "description": "Run your seeds like you run your migrations.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Khalyomede",
+            "email": "khalyomede@gmail.com"
+        }
+    ],
+    "keywords": [
+        "laravel",
+        "seed",
+        "migration",
+        "batch"
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/database": "5.5.*|5.6.*|5.7.*|5.8.*|6.*|7.*",
+        "jawira/case-converter": "3.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Khalyomede\\LaravelSeed\\": "src"
+        }
+    }
+}
