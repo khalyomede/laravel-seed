@@ -177,7 +177,7 @@ If you are sure you need to remove every seeds, you can use the following comman
 php artisan seed:reset
 ```
 
-This will take every seeds in reverse order, and run their `up()` method.
+This will take every seeds in reverse order, and run their `down()` method.
 
 ```bash
 $ php artisan seed:reset
