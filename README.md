@@ -93,7 +93,7 @@ In general seeders will populate a table modelized by one of your Eloquent model
 To specify through which Eloquent model your seeder will fill data, you can specify the `--model` argument like following:
 
 ```bash
-php artisan seed:make InsertPostCategories --model=PostCategeory
+php artisan seed:make InsertPostCategory --model=PostCategeory
 ```
 
 The content of your seeder will be filled with the usual boilerplate code you would have written:
