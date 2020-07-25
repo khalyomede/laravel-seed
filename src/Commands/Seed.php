@@ -9,10 +9,11 @@ use Jawira\CaseConverter\Convert;
 use Illuminate\Support\Collection;
 use Khalyomede\LaravelSeed\Seeder;
 use Khalyomede\LaravelSeed\Traits\CapableOfLookingForSeeds;
+use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
 
 class Seed extends Command
 {
-    use CapableOfLookingForSeeds;
+    use CapableOfLookingForSeeds, CapableOfRunningSeeds;
 
     protected $signature = "seed";
     protected $description = "Runs the seeders that have not been run yet.";
@@ -37,6 +38,8 @@ class Seed extends Command
         $bar = $this->output->createProgressBar(count($seedFileNames));
 
         if ($seedFileNames->count() > 0) {
+            $this->createSeedersTableIfItDoesNotExistYet();
+
             $bar->start();
         }
 

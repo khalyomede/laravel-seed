@@ -5,12 +5,13 @@ namespace Khalyomede\LaravelSeed\Commands;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Schema\Blueprint;
+use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
 
 class SeedMake extends Command
 {
+    use CapableOfRunningSeeds;
+
     protected $signature = "seed:make {name : The name of the seeder. Can have sub folders in the name.} {--f|force : Will erase any existing file.} {--m|model= : The model into which to seed data.}";
     protected $description = "Create a new seeder.";
     protected $name;
@@ -180,17 +181,6 @@ class SeedMake extends Command
         }
 
         return $content;
-    }
-
-    private function createSeedersTableIfItDoesNotExistYet()
-    {
-        if (!Schema::hasTable("seeders")) {
-            Schema::create("seeders", function (Blueprint $table) {
-                $table->id();
-                $table->string("seeder");
-                $table->bigInteger("batch");
-            });
-        }
     }
 
     private function identicalSeederFound(): bool

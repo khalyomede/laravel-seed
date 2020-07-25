@@ -5,6 +5,8 @@ namespace Khalyomede\LaravelSeed\Traits;
 use RuntimeException;
 use Illuminate\Support\Str;
 use Jawira\CaseConverter\Convert;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
 
 trait CapableOfRunningSeeds
 {
@@ -27,5 +29,16 @@ trait CapableOfRunningSeeds
         }
 
         return Str::plural((new Convert($matches[1]))->toPascal());
+    }
+
+    private function createSeedersTableIfItDoesNotExistYet()
+    {
+        if (!Schema::hasTable("seeders")) {
+            Schema::create("seeders", function (Blueprint $table) {
+                $table->increments("id");
+                $table->string("seeder");
+                $table->bigInteger("batch");
+            });
+        }
     }
 }
