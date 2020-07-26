@@ -25,7 +25,7 @@ class SeedReset extends Command
 
     public function handle()
     {
-        $seedFileNames = $this->getSeedsFileNames();
+        $seedFileNames = $this->getSeedsFileNamesInReverseOrder();
         $numberOfSeedsRollbacked = 0;
         $seeds = [];
         $bar = $this->output->createProgressBar(count($seedFileNames));
@@ -57,9 +57,9 @@ class SeedReset extends Command
         $this->info("$numberOfSeedsRollbacked seed(s) rollbacked.");
     }
 
-    private function getSeedsFileNames(): Collection
+    private function getSeedsFileNamesInReverseOrder(): Collection
     {
-        return Seeder::pluck("seeder");
+        return Seeder::inReverseOrder()->pluck("seeder");
     }
 
     private function forgetSeed()

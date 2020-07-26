@@ -25,7 +25,7 @@ class SeedRollback extends Command
 
     public function handle()
     {
-        $seedFileNames = $this->getSeedFileNames();
+        $seedFileNames = $this->getSeedFileNamesInReverseOrder();
         $numberOfRollbackedSeeds = 0;
         $seedsRollbacked = [];
         $bar = $this->output->createProgressBar(count($seedFileNames));
@@ -57,7 +57,7 @@ class SeedRollback extends Command
         $this->line("$numberOfRollbackedSeeds seed(s) rollbacked.");
     }
 
-    private function getSeedFileNames(): Collection
+    private function getSeedFileNamesInReverseOrder(): Collection
     {
         return $this->getSeedFileNamesMatchingBatchNumber($this->getLastSeedBatchNumber());
     }
@@ -74,7 +74,9 @@ class SeedRollback extends Command
 
     private function getSeedFileNamesMatchingBatchNumber(int $batchNumber): Collection
     {
-        return Seeder::matchingBatchNumber($batchNumber)->pluck("seeder");
+        return Seeder::matchingBatchNumber($batchNumber)
+            ->inReverseOrder()
+            ->pluck("seeder");
     }
 
     private function getLastSeederFileName(): string

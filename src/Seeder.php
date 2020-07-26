@@ -17,6 +17,11 @@ class Seeder extends Model
         return $query->where("batch", $number);
     }
 
+    public function scopeInReverseOrder(Builder $query): Builder
+    {
+        return $query->orderBy("seeder", "desc");
+    }
+
     public static function getNextBatchNumber(): int
     {
         return self::max("batch") + 1;
