@@ -5,12 +5,13 @@ namespace Khalyomede\LaravelSeed\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Khalyomede\LaravelSeed\Seeder;
-use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
 use Khalyomede\LaravelSeed\Traits\CapableOfRollbackingSeeds;
+use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
 
 class SeedReset extends Command
 {
-    use CapableOfRunningSeeds, CapableOfRollbackingSeeds;
+    use CapableOfRollbackingSeeds;
+    use CapableOfRunningSeeds;
 
     protected $signature = "seed:reset {--i|ignore-deleted : Don't raise errors if the rollbacked seed does not exist in disk.}";
     protected $description = "Rollback all the seeds.";

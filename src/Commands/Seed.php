@@ -2,18 +2,19 @@
 
 namespace Khalyomede\LaravelSeed\Commands;
 
-use RuntimeException;
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
-use Jawira\CaseConverter\Convert;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Jawira\CaseConverter\Convert;
 use Khalyomede\LaravelSeed\Seeder;
 use Khalyomede\LaravelSeed\Traits\CapableOfLookingForSeeds;
 use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
+use RuntimeException;
 
 class Seed extends Command
 {
-    use CapableOfLookingForSeeds, CapableOfRunningSeeds;
+    use CapableOfLookingForSeeds;
+    use CapableOfRunningSeeds;
 
     protected $signature = "seed";
     protected $description = "Runs the seeders that have not been run yet.";
@@ -77,7 +78,7 @@ class Seed extends Command
 
         $className = $this->getSeederClassName();
 
-        $instance = new $className;
+        $instance = new $className();
 
         $instance->up();
     }

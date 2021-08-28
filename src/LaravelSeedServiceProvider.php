@@ -6,8 +6,8 @@ use Illuminate\Support\ServiceProvider;
 use Khalyomede\LaravelSeed\Commands\Seed;
 use Khalyomede\LaravelSeed\Commands\SeedMake;
 use Khalyomede\LaravelSeed\Commands\SeedReset;
-use Khalyomede\LaravelSeed\Commands\SeedStatus;
 use Khalyomede\LaravelSeed\Commands\SeedRollback;
+use Khalyomede\LaravelSeed\Commands\SeedStatus;
 
 class LaravelSeedServiceProvider extends ServiceProvider
 {

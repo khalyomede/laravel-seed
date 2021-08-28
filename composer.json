@@ -25,5 +25,12 @@
         "psr-4": {
             "Khalyomede\\LaravelSeed\\": "src"
         }
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "3.0.2"
+    },
+    "scripts": {
+        "lint": "php-cs-fixer fix --diff --using-cache=no --allow-risky=yes --dry-run",
+        "format": "php-cs-fixer --using-cache=no --allow-risky=yes fix"
     }
 }

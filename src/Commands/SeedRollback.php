@@ -10,7 +10,8 @@ use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
 
 class SeedRollback extends Command
 {
-    use CapableOfRunningSeeds, CapableOfRollbackingSeeds;
+    use CapableOfRollbackingSeeds;
+    use CapableOfRunningSeeds;
 
     protected $signature = "seed:rollback {--i|ignore-deleted : Don't raise errors if the rollbacked seed does not exist in disk.}";
     protected $description = "Rollback all the seeds.";

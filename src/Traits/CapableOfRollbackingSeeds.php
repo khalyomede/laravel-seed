@@ -25,7 +25,7 @@ trait CapableOfRollbackingSeeds
 
         $class = $this->getSeederClassName();
 
-        $instance = new $class;
+        $instance = new $class();
 
         $instance->down();
     }

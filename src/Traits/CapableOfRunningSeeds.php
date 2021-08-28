@@ -2,11 +2,11 @@
 
 namespace Khalyomede\LaravelSeed\Traits;
 
-use RuntimeException;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use Jawira\CaseConverter\Convert;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use RuntimeException;
 
 trait CapableOfRunningSeeds
 {

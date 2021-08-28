@@ -5,7 +5,6 @@ namespace Khalyomede\LaravelSeed\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
 use Khalyomede\LaravelSeed\Seeder;
-use Illuminate\Support\Facades\Storage;
 use Khalyomede\LaravelSeed\Traits\CapableOfLookingForSeeds;
 
 class SeedStatus extends Command
@@ -38,7 +37,7 @@ class SeedStatus extends Command
         foreach ($seedFileNamesOnDisk as $seedFileNameOnDisk) {
             $seedFileNamesAndStatuses->push([
                 "file" => $seedFileNameOnDisk,
-                "status" => $seedFileNamesInTable->contains($seedFileNameOnDisk) ? "ran": "not ran",
+                "status" => $seedFileNamesInTable->contains($seedFileNameOnDisk) ? "ran" : "not ran",
             ]);
         }
 

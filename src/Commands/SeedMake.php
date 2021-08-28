@@ -3,9 +3,9 @@
 namespace Khalyomede\LaravelSeed\Commands;
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Khalyomede\LaravelSeed\Traits\CapableOfRunningSeeds;
 
 class SeedMake extends Command

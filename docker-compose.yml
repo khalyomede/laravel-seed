@@ -1,0 +1,8 @@
+version: "3"
+services:
+  composer:
+    build: ./docker/php-7.4
+    entrypoint: composer
+    volumes:
+      - .:/home/alpine
+    working_dir: /home/alpine
