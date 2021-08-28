@@ -8,6 +8,9 @@ trait CapableOfRollbackingSeeds
 {
     use CapableOfRunningSeeds;
 
+    /**
+     * @return void
+     */
     private function rollbackSeed()
     {
         if (!$this->hasSeederInDisk() && $this->option("ignore-deleted") === null) {

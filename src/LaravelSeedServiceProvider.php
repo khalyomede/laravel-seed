@@ -34,6 +34,9 @@ class LaravelSeedServiceProvider extends ServiceProvider
         }
     }
 
+    /**
+     * @return void
+     */
     private function registerCommands()
     {
         $this->commands([
@@ -45,6 +48,9 @@ class LaravelSeedServiceProvider extends ServiceProvider
         ]);
     }
 
+    /**
+     * @return void
+     */
     private function registerDisks()
     {
         app()->config["filesystems.disks.seeders"] = [

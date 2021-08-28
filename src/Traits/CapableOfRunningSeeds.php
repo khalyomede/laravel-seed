@@ -10,6 +10,11 @@ use RuntimeException;
 
 trait CapableOfRunningSeeds
 {
+    /**
+     * @var string
+     */
+    private $seedFileName;
+
     private function getAbsoluteSeederFilePath(): string
     {
         return database_path("seeders/{$this->seedFileName}.php");
@@ -31,6 +36,9 @@ trait CapableOfRunningSeeds
         return Str::plural((new Convert($matches[1]))->toPascal());
     }
 
+    /**
+     * @return void
+     */
     private function createSeedersTableIfItDoesNotExistYet()
     {
         if (!Schema::hasTable("seeders")) {

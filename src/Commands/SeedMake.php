@@ -15,8 +15,20 @@ class SeedMake extends Command
     protected $signature = "seed:make {name : The name of the seeder. Can have sub folders in the name.} {--f|force : Will erase any existing file.} {--m|model= : The model into which to seed data.}";
     protected $description = "Create a new seeder.";
     protected $name;
+
+    /**
+     * @var string
+     */
     private $seederFilePath;
+
+    /**
+     * @var string
+     */
     private $seederFileContent;
+
+    /**
+     * @var string
+     */
     private $stubFilePath;
 
     public function __construct()
@@ -29,9 +41,15 @@ class SeedMake extends Command
         $this->stubFilePath = "";
     }
 
+    /**
+     * @return void
+     */
     public function handle()
     {
-        $this->name = $this->argument("name");
+        $nameArgument = $this->argument("name");
+        $nameArgument = is_string($nameArgument) ? $nameArgument : "";
+
+        $this->name = $nameArgument;
 
         if ($this->cantEraseExistingSeeder()) {
             $this->error("A seeder already exists (use the --force option if you want to erase the existing file).");
@@ -59,6 +77,9 @@ class SeedMake extends Command
         return Storage::disk("seeders")->exists($this->getFilePath()) && $this->option("force") === null;
     }
 
+    /**
+     * @return void
+     */
     private function createSeeder()
     {
         if ($this->specifiedModel()) {
@@ -69,6 +90,9 @@ class SeedMake extends Command
         }
     }
 
+    /**
+     * @return void
+     */
     private function createSeederWithoutModel()
     {
         $this->seederFilePath = $this->getFilePath();
@@ -77,6 +101,9 @@ class SeedMake extends Command
         $this->storeSeederInFile();
     }
 
+    /**
+     * @return void
+     */
     private function createSeederWithModel()
     {
         $this->seederFilePath = $this->getFilePath();
@@ -140,14 +167,23 @@ class SeedMake extends Command
 
     private function getModelNamespace(): string
     {
-        return "App\\{$this->option("model")}";
+        $model = $this->option("model");
+        $model = is_string($model) ? $model : "";
+
+        return "App\\$model";
     }
 
     private function getModelName(): string
     {
-        return basename($this->option("model"));
+        $model = $this->option("model");
+        $model = is_string($model) ? $model : "";
+
+        return basename($model);
     }
 
+    /**
+     * @return void
+     */
     private function checkIfModelExists()
     {
         $modelNamespace = $this->getModelNamespace();
@@ -159,6 +195,9 @@ class SeedMake extends Command
         }
     }
 
+    /**
+     * @return void
+     */
     private function storeSeederInFile()
     {
         $written = Storage::disk("seeders")->put($this->seederFilePath, $this->seederFileContent);

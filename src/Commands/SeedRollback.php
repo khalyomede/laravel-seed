@@ -15,6 +15,10 @@ class SeedRollback extends Command
 
     protected $signature = "seed:rollback {--i|ignore-deleted : Don't raise errors if the rollbacked seed does not exist in disk.}";
     protected $description = "Rollback all the seeds.";
+
+    /**
+     * @var string
+     */
     private $seedFileName;
 
     public function __construct()
@@ -24,6 +28,9 @@ class SeedRollback extends Command
         $this->seedFileName = "";
     }
 
+    /**
+     * @return void
+     */
     public function handle()
     {
         $seedFileNames = $this->getSeedFileNamesInReverseOrder();
@@ -58,11 +65,17 @@ class SeedRollback extends Command
         $this->line("$numberOfRollbackedSeeds seed(s) rollbacked.");
     }
 
+    /**
+     * @return Collection<string>
+     */
     private function getSeedFileNamesInReverseOrder(): Collection
     {
         return $this->getSeedFileNamesMatchingBatchNumber($this->getLastSeedBatchNumber());
     }
 
+    /**
+     * @return void
+     */
     private function forgetSeed()
     {
         Seeder::forget($this->seedFileName);
@@ -73,8 +86,14 @@ class SeedRollback extends Command
         return Seeder::getBatchNumberFromSeederFileName($this->getLastSeederFileName());
     }
 
+    /**
+     * @return Collection<string>
+     */
     private function getSeedFileNamesMatchingBatchNumber(int $batchNumber): Collection
     {
+        /**
+         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::matchingBatchNumber()
+         */
         return Seeder::matchingBatchNumber($batchNumber)
             ->inReverseOrder()
             ->pluck("seeder");
@@ -82,6 +101,9 @@ class SeedRollback extends Command
 
     private function getLastSeederFileName(): string
     {
+        /**
+         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::latest()
+         */
         $lastSeeder = Seeder::latest("id")->first();
 
         if (!($lastSeeder instanceof Seeder)) {

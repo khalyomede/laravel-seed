@@ -26,9 +26,12 @@ jobs:
       - uses: actions/checkout@v2
 
       # Runs a single command using the runners shell
-      
+
       - name: Install
         run: docker-compose run --rm composer install
-      
+
       - name: Linting
         run: docker-compose run --rm composer run lint
+
+      - name: Analyzing
+        run: docker-compose run --rm composer run analyse

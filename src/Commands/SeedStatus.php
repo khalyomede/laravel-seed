@@ -19,6 +19,9 @@ class SeedStatus extends Command
         parent::__construct();
     }
 
+    /**
+     * @return void
+     */
     public function handle()
     {
         $seedFileNamesAndStatuses = $this->getSeedFileNamesAndStatuses();
@@ -28,6 +31,9 @@ class SeedStatus extends Command
         $this->line("{$seedFileNamesAndStatuses->count()} row(s) displayed.");
     }
 
+    /**
+     * @return Collection<array>
+     */
     private function getSeedFileNamesAndStatuses(): Collection
     {
         $seedFileNamesAndStatuses = collect();
@@ -53,8 +59,14 @@ class SeedStatus extends Command
         return $seedFileNamesAndStatuses;
     }
 
+    /**
+     * @return Collection<string>
+     */
     private function getSeedFileNamesInTable(): Collection
     {
+        /**
+         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::pluck()
+         */
         return Seeder::pluck("seeder");
     }
 }

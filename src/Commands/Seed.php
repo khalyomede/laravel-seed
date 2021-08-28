@@ -18,7 +18,15 @@ class Seed extends Command
 
     protected $signature = "seed";
     protected $description = "Runs the seeders that have not been run yet.";
+
+    /**
+     * @var string
+     */
     private $seedFileName;
+
+    /**
+     * @var int
+     */
     private $batchNumber;
 
     public function __construct()
@@ -29,6 +37,9 @@ class Seed extends Command
         $this->batchNumber = 0;
     }
 
+    /**
+     * @return void
+     */
     public function handle()
     {
         $this->batchNumber = Seeder::getNextBatchNumber();
@@ -67,11 +78,22 @@ class Seed extends Command
         $this->info("{$numberOfSeedsRan} seed(s) ran.");
     }
 
+    /**
+     * @return Collection<string>
+     */
     private function getSeedFiles(): Collection
     {
-        return $this->getSeedFileNames()->diff(Seeder::pluck("seeder"));
+        /**
+         * @phpstan-ignore-next-line  Call to an undefined static method Khalyomede\LaravelSeed\Seeder::pluck()
+         */
+        $seeders = Seeder::pluck("seeder");
+
+        return $this->getSeedFileNames()->diff($seeders);
     }
 
+    /**
+     * @return void
+     */
     private function runSeeder()
     {
         include_once $this->getAbsoluteSeederFilePath();
@@ -104,8 +126,14 @@ class Seed extends Command
         return database_path("seeders/{$this->seedFileName}.php");
     }
 
+    /**
+     * @return void
+     */
     private function rememberThatSeederHaveBeenRun()
     {
+        /**
+         * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::insert()
+         */
         Seeder::insert([
             "seeder" => $this->seedFileName,
             "batch" => $this->batchNumber,
