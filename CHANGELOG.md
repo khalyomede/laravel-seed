@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Support for Laravel 8 (#2).
+
+### Fixed
+
+- Bug when not specifying model option, the code would consider it specified (#5).
+
 ## [0.1.2] 2020-07-26
 
 ### Fixed
