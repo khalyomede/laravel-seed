@@ -9,11 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Support for Laravel 8 (#2).
+- Support for Laravel 8 ([#2](https://github.com/khalyomede/laravel-seed/pull/2)).
 
 ### Fixed
 
-- Bug when not specifying model option, the code would consider it specified (#5).
+- Bug when not specifying model option, the code would consider it specified ([#5](https://github.com/khalyomede/laravel-seed/pull/5)).
 
 ## [0.1.2] 2020-07-26
 
