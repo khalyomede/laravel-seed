@@ -56,7 +56,7 @@ class SeedMake extends Command
 
     private function cantEraseExistingSeeder(): bool
     {
-        return Storage::disk("seeders")->exists($this->getFilePath()) && !$this->hasOption("force");
+        return Storage::disk("seeders")->exists($this->getFilePath()) && $this->option("force") === null;
     }
 
     private function createSeeder()
@@ -135,7 +135,7 @@ class SeedMake extends Command
 
     private function specifiedModel(): bool
     {
-        return $this->hasOption("model");
+        return $this->option("model") !== null;
     }
 
     private function getModelNamespace(): string

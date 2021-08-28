@@ -10,14 +10,14 @@ trait CapableOfRollbackingSeeds
 
     private function rollbackSeed()
     {
-        if (!$this->hasSeederInDisk() && !$this->hasOption("ignore-deleted")) {
+        if (!$this->hasSeederInDisk() && $this->option("ignore-deleted") === null) {
             $this->line("\n");
             $this->error("Seeder {$this->seedFileName} does not exist in disk.  Use --ignore-deleted to skip this error message.");
 
             exit(1);
         }
 
-        if (!$this->hasSeederInDisk() && $this->hasOption("ignore-deleted")) {
+        if (!$this->hasSeederInDisk() && $this->option("ignore-deleted") !== null) {
             return;
         }
 
