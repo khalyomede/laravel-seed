@@ -169,6 +169,13 @@ class SeedMake extends Command
     {
         $model = $this->option("model");
         $model = is_string($model) ? $model : "";
+        
+        $laravelVersion = (int) app()->version();
+
+        if($laravelVersion === 8)
+        {
+            return "App\\Models\\$model";
+        }
 
         return "App\\$model";
     }
