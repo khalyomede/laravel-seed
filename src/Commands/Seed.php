@@ -135,6 +135,7 @@ class Seed extends Command
          * @phpstan-ignore-next-line Call to an undefined static method Khalyomede\LaravelSeed\Seeder::insert()
          */
         Seeder::insert([
+            "id" => Str::uuid(),
             "seeder" => $this->seedFileName,
             "batch" => $this->batchNumber,
         ]);
